@@ -37,6 +37,10 @@
 		{
 			"Name": "GPULightmass",
 			"Enabled": true
+		},
+		{
+			"Name": "AsyncMessageSystem",
+			"Enabled": true
 		}
 	]
 }

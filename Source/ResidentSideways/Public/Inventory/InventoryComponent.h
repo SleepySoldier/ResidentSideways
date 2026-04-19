@@ -32,12 +32,20 @@ class RESIDENTSIDEWAYS_API UInventoryComponent : public UActorComponent
 public:
 	UInventoryComponent();
 
+	
 	UPROPERTY(BlueprintCallable, BlueprintAssignable)
 	FOnItemAdded OnItemAdded;
+	
 	UFUNCTION(BlueprintCallable, Category="Inventory")
 	bool AddItem(UItemInfoAsset* Item, int32 AmountToAdd);
+	
 	TArray<FItemSlotInfo> GetInventory() const { return Inventory; };
+	
+	UFUNCTION(BlueprintCallable, Category="Inventory")
+	void SetInventory(const TArray<FItemSlotInfo>& PlayerInventory) { this->Inventory = PlayerInventory; };
+	
 	FItemSlotInfo GetItemAtIndex(int32 Index) const { return Inventory[Index]; };
+
 
 	int32 DoesHaveAmmo(const FGameplayTag AmmoTag);
 protected:
@@ -46,12 +54,16 @@ protected:
 	
 	UPROPERTY(BlueprintReadOnly, Category="Inventory")
 	TArray<FItemSlotInfo> Inventory;
+
 	UPROPERTY(BlueprintReadWrite, Category="Inventory")
 	int32 InventorySize{20};
 
 private:
+	
 	bool TryAddNewItem(UItemInfoAsset* Item, int32 AmountToAdd);
+	
 	void CheckEmptySlot(int32& Index, bool& bSlotFound);
+	
 	void SetInventoryArrayElement(int32 Index, UItemInfoAsset* Item, int32 AmoundHeld);
 
 };

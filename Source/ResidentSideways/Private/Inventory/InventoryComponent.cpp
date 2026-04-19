@@ -3,6 +3,7 @@
 
 #include "Inventory/InventoryComponent.h"
 #include "Inventory/ItemInfoAsset.h"
+#include "Kismet/KismetMathLibrary.h"
 
 
 UInventoryComponent::UInventoryComponent()
@@ -91,8 +92,9 @@ bool UInventoryComponent::TryAddNewItem(UItemInfoAsset* Item, int32 AmountToAdd)
 	bool bSlotFound{false};
 	CheckEmptySlot(Index, bSlotFound);
 	if (bSlotFound)
-	{		
-		if (Item->ItemType == EItemType::Weapon)
+	{
+		// Use MaxMagCapacity for amount held for Firearms only.
+		if (Item->ItemType == EItemType::Weapon && Item->WeaponInfo.WeaponType == EWeaponType::Firearm)
 		{
 			SetInventoryArrayElement(Index, Item, Item->WeaponInfo.MaxMagCapacity);
 		}

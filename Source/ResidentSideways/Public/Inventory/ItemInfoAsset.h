@@ -30,6 +30,8 @@ struct FWeaponInfo
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	EWeaponType WeaponType;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	EWeaponFireType FireType;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FGameplayTag FirearmAmmoTag;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FName BarrelSocketName{FName("Barrel")};
